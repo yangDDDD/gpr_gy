@@ -1,0 +1,66 @@
+
+
+def add_path_args(parser):
+    path_args = parser.add_argument_group("path_config", "argparser for path")
+
+    path_args.add_argument('--dataprocess111', metavar='DIR', help='relative path from root to 111',
+                           default='/processed_dataset/111extractfoldpkl')
+
+    path_args.add_argument('--dataprocess222', metavar='DIR', help='relative path from root to 222',
+                           default='/processed_dataset/222dataloader')
+
+    path_args.add_argument('--nameextract333', metavar='DIR', help='relative path from root to 333',
+                           default='/processed_dataset/333nameextract')
+
+    path_args.add_argument('--allconfig_path', metavar='DIR', help=' path of all_config',
+                           default='../checkpoints/all_config.json')
+
+    path_args.add_argument('--log_dir', metavar='DIR', default="/logs")
+
+    return parser
+
+
+def add_feature_args(parser):
+    feature_args = parser.add_argument_group("feature_config", "argparser for feature")
+
+    feature_args.add_argument("--folds_num", help="folds_num", default=5)
+
+    feature_args.add_argument("--use_layers", help="use layers of bert", default=[-6])
+
+    feature_args.add_argument("--linear_hidden_size", help="hidden size of mlp", default=64)
+
+    feature_args.add_argument("--token_dist_ratio", help="token dist ratio", default=5)
+
+    feature_args.add_argument("--seed", default=1992,  help="all seed")
+
+    return parser
+
+
+def add_learning_args(parser):
+    learning_args = parser.add_argument_group("learning_config", "argparser for learning")
+
+    learning_args.add_argument("--train_batch_size", default=32)
+    learning_args.add_argument("--valid_batch_size", default=32)
+    learning_args.add_argument("--test_batch_size", default=32)
+
+    learning_args.add_argument("--early_stopping_rounds", default=8)
+
+    learning_args.add_argument("--base_lr", default=2e-4)
+    learning_args.add_argument("--max_lr", default=8e-4)
+    learning_args.add_argument("--lr_cyclemode", default="triangular2")
+    learning_args.add_argument("--cycle_halfT", default=5)
+
+    return parser
+
+
+def add_res_args(parser):
+    res_args = parser.add_argument_group("resource_config", "argparser for resource")
+
+    res_args.add_argument("--num_workers", default=7)
+
+    res_args.add_argument("--use_cuda", default=True)
+
+    # res_args.add_argument("--version", default="0328_v1", help="version")
+
+
+    return parser
